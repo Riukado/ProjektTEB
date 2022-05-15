@@ -24,7 +24,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping(value="/account", method=RequestMethod.GET)
+    @RequestMapping(value="/account", method = RequestMethod.GET)
     public long createAccount(@RequestBody AccountEntity accountEntity){
         return accountService.createAccount(accountEntity);
     }
@@ -47,8 +47,8 @@ public class AccountController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
-    @POST
-    @Path("/account/create")
+
+    @RequestMapping(value="/account/create", method = RequestMethod.POST)
     public Response createNewAccountWithHTML(
             @FormParam("username") String username,
             @FormParam("password") String password,
@@ -57,5 +57,4 @@ public class AccountController {
         String output = "Your username: " + username + ". Your password: " + password + ". Your email: "+ email;
         return Response.status(200).entity(output).build();
     }
-
 }
