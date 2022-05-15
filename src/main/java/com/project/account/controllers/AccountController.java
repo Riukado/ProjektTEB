@@ -49,12 +49,11 @@ public class AccountController {
     }
 
     @RequestMapping(value="/account/create", method = RequestMethod.POST)
-    public Response createNewAccountWithHTML(
+    public void createNewAccountWithHTML(
             @FormParam("username") String username,
             @FormParam("password") String password,
             @FormParam("email") String email
     ){
-        String output = "Your username: " + username + ". Your password: " + password + ". Your email: "+ email;
-        return Response.status(200).entity(output).build();
+        accountService.createAccount(new AccountEntity(username, password, email,false));
     }
 }
